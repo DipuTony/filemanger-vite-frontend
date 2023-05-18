@@ -13,7 +13,7 @@ const MainPage = () => {
     const [fileData, setFileData] = useState(fakeData)
     const [searchKey, setSearchKey] = useState()
     const [finalData, setFinalData] = useState()
-
+    const [openDeleteModal, setOpenDeleteModal] = useState(false)
 
     const fetchCategory = () => {
         axios.get('https://646312614dca1a661353d0ee.mockapi.io/api/Category')
@@ -43,7 +43,6 @@ const MainPage = () => {
     }, [])
 
     const filterData = fileData?.filter(name => name?.Name?.toLowerCase()?.includes(searchKey?.toLowerCase()))
-    // console.log("filter date", filterData)
 
     useEffect(() => {
         if (searchKey?.length > 0) {
@@ -53,12 +52,15 @@ const MainPage = () => {
         }
     }, [searchKey])
 
+    const handleDeleteIcon = (id) => {
+        console.log("Delete clicked..", id)
+        setOpenDeleteModal(false)
+
+    }
+
     return (
         <>
             <div className='bg-[#EFF3FA] h-full'>
-
-
-
                 <div className='grid grid-cols-12 pt-14'>
 
                     <div className='col-span-2 mt-10 ml-8'>
@@ -123,9 +125,25 @@ const MainPage = () => {
                                         <div className='col-span-2'>Labels</div>
                                         <div className='col-span-2 uppercase'>{item.Type}</div>
                                         <div className='col-span-2'>{moment(item.ModifietAt).format("Do MMM 'YY")}</div>
-                                        <div className='col-span-1 flex gap-2'>
-                                            <TbEdit />
-                                            <AiTwotoneDelete />
+                                        <div className='col-span-1 flex gap-2 relative'>
+                                            <p className='cursor-pointer hover:bg-gray-300 rounded-md p-1'>
+                                                <TbEdit size={15} />
+                                            </p>
+
+                                            {openDeleteModal == item.id &&
+                                                <div className='absolute shadow-inner w-40  right-5 -top-12'>
+                                                    <p className='flex text-xs bg-gray-200 pl-3 rounded-t-lg'> <AiTwotoneDelete className='mt-0.5 mr-1' size={12} />Remove</p>
+                                                    <p className='rounded-b-lg border bg-white border-gray-200 text-sm pl-2 py-1 flex items-center gap-2'>
+                                                        Are you sure ?
+                                                        <img onClick={() => handleDeleteIcon(item.id)} src="https://cdn-icons-png.flaticon.com/512/845/845646.png" alt="ok" className='h-3 cursor-pointer' />
+                                                        <img onClick={() => setOpenDeleteModal(false)} src="https://cdn-icons-png.flaticon.com/512/458/458594.png" alt="cancel" className='h-3 cursor-pointer' />
+                                                    </p>
+                                                </div>
+                                            }
+
+                                            <p onClick={() => setOpenDeleteModal(item.id)} className='cursor-pointer hover:bg-gray-300 rounded-md p-1'>
+                                                <AiTwotoneDelete size={15} />
+                                            </p>
                                         </div>
                                     </div>
 

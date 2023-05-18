@@ -2,6 +2,7 @@ import React from 'react'
 import Header from './Components/Header'
 import Sidebar from './Components/Sidebar'
 import MainPage from './Pages/MainPage'
+import reactLogo from './assets/react.svg'
 
 const App = () => {
   return (
