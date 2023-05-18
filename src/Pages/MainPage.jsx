@@ -26,7 +26,7 @@ const MainPage = () => {
             })
     }
     const fetchFileData = () => {
-        axios.get('https://646312614dca1a661353d0ee.mockapi.io/api/Files')
+        axios.get('https://646312614dca1a661353d0ee.mockapi.io/api/File')
             .then((res) => {
                 console.log("file data", res.data)
                 if (res.data.length > 0) setFileData(res.data) // IF API is down access FakeData list
