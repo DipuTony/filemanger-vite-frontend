@@ -14,6 +14,7 @@ const MainPage = () => {
     const [searchKey, setSearchKey] = useState()
     const [finalData, setFinalData] = useState()
     const [openDeleteModal, setOpenDeleteModal] = useState(false)
+    const [deleted, setDeleted] = useState()
 
     const fetchCategory = () => {
         axios.get('https://646312614dca1a661353d0ee.mockapi.io/api/Category')
@@ -55,12 +56,13 @@ const MainPage = () => {
     const handleDeleteIcon = (id) => {
         console.log("Delete clicked..", id)
         setOpenDeleteModal(false)
+        setDeleted(id)
 
     }
-
+    // console.log("deleted", deleted)
     return (
         <>
-            <div className='bg-[#EFF3FA] h-full'>
+            <div className='bg-[#EFF3FA] h-screen'>
                 <div className='grid grid-cols-12 pt-14'>
 
                     <div className='col-span-2 mt-10 ml-8'>
@@ -112,7 +114,7 @@ const MainPage = () => {
                             </div>
 
                             {
-                                finalData?.map((item) => (
+                                finalData?.filter(item => item.id != deleted)?.map((item) => (
                                     <div key={item.id} className='grid grid-cols-12 items-center text-sm text-gray-700 py-5 border-b'>
                                         <div className='col-span-4 flex items-center gap-3'>
                                             <input type="checkbox" name="" id="" className='accent-[#824DE8]' />
