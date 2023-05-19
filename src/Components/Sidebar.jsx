@@ -3,7 +3,7 @@ import React from 'react'
 const Sidebar = () => {
   return (
     <>
-      <div className='bg-white border-r border-gray-200 h-full shadow-md'>
+      <div className='bg-white border-r border-gray-200 h-full shadow-md w-full'>
         <div className='flex justify-center items-center mt-3'>
           <img src="https://cdn-icons-png.flaticon.com/512/187/187856.png" alt="Logo" className='h-6 mr-2 mt-1' />
           <p className='text-3xl font-bold text-gray-600 '>Stealth</p>

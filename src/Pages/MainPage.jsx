@@ -63,16 +63,16 @@ const MainPage = () => {
     return (
         <>
             <div className='bg-[#EFF3FA] h-screen'>
-                <div className='grid grid-cols-12 pt-14'>
+                <div className='grid grid-cols-12 md:pt-14'>
 
-                    <div className='col-span-2 mt-10 ml-8'>
-                        <p className='uppercase flex font-semibold text-sm'>categories <span className='mt-0.5 ml-3'> <IoIosSettings color='gray' size={18} /></span> </p>
+                    <div className='col-span-12 md:col-span-2 mt-5 md:mt-10 ml-2 md:ml-8 accent-[#824DE8]'>
+                        <p className='uppercase flex font-semibold text-base'>categories <span className='mt-0.5 ml-3'> <IoIosSettings color='gray' size={18} /></span> </p>
 
                         {
                             categoryData?.map((item) => (
                                 <div key={item.id}>
                                     <p className='pt-3 font-semibold'>{item.Name}</p>
-                                    <div>
+                                    <div className='flex md:block gap-5'>
                                         {item?.Labels?.map((label) => (
 
                                             <div key={label.id}> <input type="checkbox" name="" id="" /> {label.Name} </div>
@@ -86,7 +86,7 @@ const MainPage = () => {
 
 
                     </div>
-                    <div className='col-span-9'>
+                    <div className='col-span-12 md:col-span-9'>
 
                         <div className='flex justify-end '>
                             <input
@@ -97,37 +97,37 @@ const MainPage = () => {
                                 placeholder='Search by name'
                                 className='rounded-md border-2 border-gray-200 placeholder:text-xs h-8 mb-2 px-2' />
                         </div>
-                        <div className='bg-white rounded-md shadow-lg p-4'>
-                            <p className='mb-10'>All Items</p>
+                        <div className='bg-white rounded-md shadow-lg p-4 md:m-0 mr-2'>
+                            <p className='mb-10 font-bold text-gray-700'>All Items</p>
 
 
                             <div className='grid grid-cols-12 uppercase font-semibold text-sm text-gray-800 border-b-2'>
-                                <div className='col-span-4 flex gap-3'>
-                                    <input type="checkbox" name="" id="" />
+                                <div className='col-span-4 flex md:gap-3 gap-1'>
+                                    <input type="checkbox" name="" id="" className='accent-[#824DE8]'/>
                                     Name
                                 </div>
-                                <div className='col-span-1'>Owner</div>
-                                <div className='col-span-2'>Labels</div>
-                                <div className='col-span-2'>Type</div>
-                                <div className='col-span-2'>Modified</div>
-                                <div className='col-span-1'>Action</div>
+                                <div className='col-span-1 md:text-base text-xs'>Owner</div>
+                                <div className='col-span-2 md:text-base text-xs'>Labels</div>
+                                <div className='col-span-2 md:text-base text-xs'>Type</div>
+                                <div className='col-span-2 md:text-base text-xs'>Modified</div>
+                                <div className='col-span-1 md:text-base text-xs'>Action</div>
                             </div>
 
                             {
                                 finalData?.filter(item => item.id != deleted)?.map((item) => (
-                                    <div key={item.id} className='grid grid-cols-12 items-center text-sm text-gray-700 py-5 border-b'>
-                                        <div className='col-span-4 flex items-center gap-3'>
+                                    <div key={item.id} className='grid grid-cols-12 items-center text-sm text-gray-700 py-3 md:py-5 border-b'>
+                                        <div className='col-span-4 flex items-center md:gap-3 gap-1'>
                                             <input type="checkbox" name="" id="" className='accent-[#824DE8]' />
-                                            <img src={item.file} alt="Alt Text" className='h-8 rounded-md' />
-                                            <p className='font-semibold'>{item.Name}</p>
+                                            <img src={item.file} alt="Alt Text" className='md:h-8 h-6 rounded md:rounded-md' />
+                                            <p className='font-semibold md:text-base text-xs break-all'>{item.Name}</p>
                                         </div>
                                         <div className='col-span-1'>
-                                            <img src={item.Owner} alt="Test" className='rounded-full w-8 h-8' />
+                                            <img src={item.Owner} alt="Test" className='rounded-full w-6 h-6 md:w-8 md:h-8' />
                                         </div>
                                         <div className='col-span-2'>Labels</div>
-                                        <div className='col-span-2 uppercase'>{item.Type}</div>
-                                        <div className='col-span-2'>{moment(item.ModifietAt).format("Do MMM 'YY")}</div>
-                                        <div className='col-span-1 flex gap-2 relative'>
+                                        <div className='col-span-2 uppercase break-all md:text-base text-xs'>{item.Type}</div>
+                                        <div className='col-span-2 md:text-base text-xs'>{moment(item.ModifietAt).format("Do MMM 'YY")}</div>
+                                        <div className='col-span-1 flex md:gap-2 relative'>
                                             <p className='cursor-pointer hover:bg-gray-300 rounded-md p-1'>
                                                 <TbEdit size={15} />
                                             </p>
