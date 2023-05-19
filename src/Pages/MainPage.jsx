@@ -140,6 +140,7 @@ const MainPage = () => {
                                                         <img onClick={() => handleDeleteIcon(item.id)} src="https://cdn-icons-png.flaticon.com/512/845/845646.png" alt="ok" className='h-3 cursor-pointer' />
                                                         <img onClick={() => setOpenDeleteModal(false)} src="https://cdn-icons-png.flaticon.com/512/458/458594.png" alt="cancel" className='h-3 cursor-pointer' />
                                                     </p>
+                                                    <div class="absolute bottom-0 right-[22px] transform -translate-x-1/2 translate-y-1/2 rotate-45 w-3 h-2 bg-white border-r border-b border-gray-300"></div>
                                                 </div>
                                             }
 
