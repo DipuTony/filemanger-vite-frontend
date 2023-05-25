@@ -1,6 +1,14 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Sidebar = () => {
+
+  const menu = [
+    { id: 1, name: 'View Documents', path: '/view-documents', icon: 'https://cdn-icons-png.flaticon.com/512/1102/1102285.png' },
+    { id: 2, name: 'Upload Documents', path: '/upload-documents', icon: 'https://cdn-icons-png.flaticon.com/512/1102/1102285.png' },
+    { id: 3, name: 'User Management', path: '/manage-users', icon: 'https://cdn-icons-png.flaticon.com/512/1102/1102285.png' },
+  ]
+
   return (
     <>
       <div className='bg-white border-r border-gray-200 h-full shadow-md w-full'>
@@ -10,10 +18,15 @@ const Sidebar = () => {
         </div>
         <p className='border-b-2 mt-5'></p>
 
-        <div className='bg-indigo-100 m-5 flex justify-center py-2 rounded-sm'>
-          <img src="https://cdn-icons-png.flaticon.com/512/1102/1102285.png" alt="Logo" className='h-6 mr-3'/>
-          <p className='font-medium'>File Manager</p>
-        </div>
+        {
+          menu.map((item) => (
+
+            <div key={item.id} className='bg-indigo-100 m-5 flex justify-center py-2 rounded-sm'>
+              <img src={item.icon} alt="Logo" className='h-6 mr-3' />
+              <Link to={item.path} className='font-medium'>{item.name}</Link>
+            </div>
+          ))
+        }
       </div>
     </>
   )
