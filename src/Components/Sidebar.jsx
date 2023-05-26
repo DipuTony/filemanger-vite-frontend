@@ -6,6 +6,7 @@ const Sidebar = () => {
   const menu = [
     { id: 1, name: 'View Documents', path: '/view-documents', icon: 'https://cdn-icons-png.flaticon.com/512/1102/1102285.png' },
     { id: 2, name: 'Upload Documents', path: '/upload-documents', icon: 'https://cdn-icons-png.flaticon.com/512/1102/1102285.png' },
+    { id: 3, name: 'Module Master', path: '/module-master', icon: 'https://cdn-icons-png.flaticon.com/512/1102/1102285.png' },
     { id: 3, name: 'User Management', path: '/manage-users', icon: 'https://cdn-icons-png.flaticon.com/512/1102/1102285.png' },
   ]
 
@@ -21,10 +22,12 @@ const Sidebar = () => {
         {
           menu.map((item) => (
 
-            <div key={item.id} className='bg-indigo-100 m-5 flex justify-center py-2 rounded-sm'>
-              <img src={item.icon} alt="Logo" className='h-6 mr-3' />
-              <Link to={item.path} className='font-medium'>{item.name}</Link>
-            </div>
+            <Link to={item.path} className='font-medium'>
+              <div key={item.id} className='bg-indigo-100 m-5 flex justify-center py-2 rounded-sm'>
+                <img src={item.icon} alt="Logo" className='h-6 mr-3' />
+                {item.name}
+              </div>
+            </Link>
           ))
         }
       </div>

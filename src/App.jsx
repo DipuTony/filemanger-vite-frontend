@@ -9,6 +9,7 @@ import ViewDocuments from './Pages/ViewDocuments'
 import Dashboard from './Pages/Dashboard'
 import UserManagement from './Pages/UserManagement'
 import UploadDocuments from './Pages/UploadDocuments'
+import ViewModuleList from './Pages/ModuleMaster/ViewModuleList'
 
 const App = () => {
   const [showHideMenu, setShowHideMenu] = useState()
@@ -30,6 +31,7 @@ const App = () => {
             <Route path="/old" element={<MainPage />} />
             <Route path="/view-documents" element={<ViewDocuments />} />
             <Route path="/upload-documents" element={<UploadDocuments />} />
+            <Route path="/module-master" element={<ViewModuleList />} />
             <Route path="/manage-users" element={<UserManagement />} />
           </Routes>
         </div>

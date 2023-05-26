@@ -31,6 +31,7 @@ const UploadDocuments = () => {
         formData.append('tags', tags);
 
         const headers = {
+          'Content-Type': 'multipart/form-data',
           'x-digest': fileDigest
         };
 
