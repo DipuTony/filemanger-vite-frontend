@@ -20,6 +20,7 @@ export default function ApiList() {
         api_viewAllDocuments: `${baseUrl}/document/view`, //POST
         api_uploadDocument: `${baseUrl}/document/upload`, //POST
         api_viewConsumerList: `${baseUrl}/consumer/view-all`, //POST
+        api_addConsumer: `${baseUrl}/consumer/add`, //POST
 
     }
 

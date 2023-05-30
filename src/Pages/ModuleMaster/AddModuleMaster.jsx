@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
 import { MdOutlineClose } from 'react-icons/md'
+import axios from 'axios';
+import ApiList from '../../Components/ApiLIst';
 
 const customStyles = {
     content: {
@@ -14,6 +16,7 @@ const customStyles = {
     },
 };
 
+
 // Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
 Modal.setAppElement('#root');
 
@@ -23,6 +26,7 @@ function AddModuleMaster(props) {
     const [data, setData] = useState({
         token: '', module: ''
     })
+    const { api_addConsumer, header } = ApiList()
 
     useEffect(() => {
         openModal()
@@ -40,6 +44,18 @@ function AddModuleMaster(props) {
     }
 
     const handleSubmit = () => {
+
+        const payload = {
+            "token": data.token,
+            "module": data.token
+        }
+
+        axios.post(api_addConsumer, payload, header)
+            .then((res) => {
+                console.log("MOdule Added Suceess")
+                closeModal()
+            })
+
         console.log("submit data", data)
     }
 
