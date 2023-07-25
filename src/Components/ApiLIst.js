@@ -19,8 +19,8 @@ export default function ApiList() {
         header: header,
         api_viewAllDocuments: `${baseUrl}/document/view`, //POST
         api_uploadDocument: `${baseUrl}/document/upload`, //POST
-        api_viewConsumerList: `${baseUrl}/consumer/view-all`, //POST
-        api_addConsumer: `${baseUrl}/consumer/add`, //POST
+        api_viewConsumerList: `${baseUrl}/admin/consumer/view-all`, //POST
+        api_addConsumer: `${baseUrl}/admin/consumer/add`, //POST
 
     }
 

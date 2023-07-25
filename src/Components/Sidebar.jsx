@@ -1,36 +1,70 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { BarChart, Wallet, Newspaper, BellRing, Paperclip, Brush, Wrench, XCircle, LayoutDashboard, FileStack, FileUp, Database, Users, UserCog, KeyRound, Container } from 'lucide-react'
+
 
 const Sidebar = () => {
 
   const menu = [
-    { id: 1, name: 'View Documents', path: '/view-documents', icon: 'https://cdn-icons-png.flaticon.com/512/1102/1102285.png' },
-    { id: 2, name: 'Upload Documents', path: '/upload-documents', icon: 'https://cdn-icons-png.flaticon.com/512/1102/1102285.png' },
-    { id: 3, name: 'Module Master', path: '/module-master', icon: 'https://cdn-icons-png.flaticon.com/512/1102/1102285.png' },
-    { id: 3, name: 'User Management', path: '/manage-users', icon: 'https://cdn-icons-png.flaticon.com/512/1102/1102285.png' },
+    { id: 1, name: 'Dashboard', path: '/', icon: LayoutDashboard },
+    { id: 2, name: 'View Documents', path: '/view-documents', icon: FileStack },
+    { id: 3, name: 'Upload Documents', path: '/upload-documents', icon: FileUp },
+    { id: 4, name: 'Module Master', path: '/module-master', icon: Database },
+    { id: 5, name: 'User Management', path: '/manage-users', icon: Users },
+    { id: 5, name: 'OLD', path: '/old', icon: Users },
+    { id: 5, name: 'test', path: '/oldtest', icon: Users },
   ]
 
   return (
     <>
-      <div className='bg-white border-r border-gray-200 h-full shadow-md w-full'>
-        <div className='flex justify-center items-center mt-3'>
-          <img src="https://cdn-icons-png.flaticon.com/512/187/187856.png" alt="Logo" className='h-6 mr-2 mt-1' />
-          <p className='text-3xl font-bold text-gray-600 '>Stealth</p>
+      <aside className="flex h-screen w-full flex-col overflow-y-auto border-r bg-black px-5 py-8">
+        <div className='text-white text-center border p-2 rounded'>
+
+          <p className='text-white text-2xl font-bold'>Document</p>
+          <p className='font-bold text-lg'>Management System</p>
         </div>
-        <p className='border-b-2 mt-5'></p>
+        <div className="mt-6 flex flex-1 flex-col justify-between">
+          <nav className="-mx-3 space-y-6 ">
+            <div className="space-y-3 ">
+              {
+                menu.map((item) => (
+                  <Link to={item.path}
+                    className="flex transform items-center rounded-lg px-3 py-2 text-gray-200 transition-colors duration-300 hover:bg-gray-50 hover:text-gray-700">
+                    <item.icon className="h-5 w-5" aria-hidden="true" />
+                    <span className="mx-2 text-sm font-medium capitalize">{item.name}</span>
+                  </Link>
+                ))
+              }
+            </div>
 
-        {
-          menu.map((item) => (
+            <div className="space-y-3 ">
+              <label className="px-3 text-xs font-semibold uppercase text-white ">Personal</label>
+              <a
+                className="flex transform items-center rounded-lg px-3 py-2 text-gray-200 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700"
+                href="#"
+              >
+                <BellRing className="h-5 w-5" aria-hidden="true" />
+                <span className="mx-2 text-sm font-medium">Notifications</span>
+              </a>
+              <a
+                className="flex transform items-center rounded-lg px-3 py-2 text-gray-200 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700"
+                href="#"
+              >
+                <KeyRound className="h-5 w-5" aria-hidden="true" />
+                <span className="mx-2 text-sm font-medium">Password</span>
+              </a>
+              <Link to="/profile"
+                className="flex transform items-center rounded-lg px-3 py-2 text-gray-200 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700">
+                <UserCog className="h-5 w-5" aria-hidden="true" />
+                <span className="mx-2 text-sm font-medium">Profile</span>
+              </Link>
+            </div>
+          </nav>
+        </div>
+      </aside>
 
-            <Link to={item.path} className='font-medium'>
-              <div key={item.id} className='bg-indigo-100 m-5 flex justify-center py-2 rounded-sm'>
-                <img src={item.icon} alt="Logo" className='h-6 mr-3' />
-                {item.name}
-              </div>
-            </Link>
-          ))
-        }
-      </div>
+
+
     </>
   )
 }

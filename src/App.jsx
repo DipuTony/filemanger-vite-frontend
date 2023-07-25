@@ -10,6 +10,8 @@ import Dashboard from './Pages/Dashboard'
 import UserManagement from './Pages/UserManagement'
 import UploadDocuments from './Pages/UploadDocuments'
 import ViewModuleList from './Pages/ModuleMaster/ViewModuleList'
+import Test from './Pages/TEST/Test'
+import ProfileIndex from './Pages/Profile/ProfileIndex'
 
 const App = () => {
   const [showHideMenu, setShowHideMenu] = useState()
@@ -18,13 +20,13 @@ const App = () => {
     <>
 
 
-      <div className='grid grid-cols-12'>
-        <div className={`md:col-span-2 ${showHideMenu ? 'block' : 'hidden'} absolute md:relative md:block w-[80%] mt-14 h-screen md:mt-0 md:w-full`}>
+      <div className='grid grid-cols-12 bg-gray-200'>
+        <div className={`md:col-span-2 absolute md:relative md:block w-[80%] mt-14 h-screen md:mt-0 md:w-full`}>
           <Sidebar />
         </div>
-        <div className='md:col-span-10 col-span-12'>
-          <Header handleMenu={(e) => setShowHideMenu(e)} />
-
+        <div className='md:col-span-10 col-span-12 m-5'>
+          <Header />
+          <p className='mt-20'></p>
 
           <Routes>
             <Route path="/" element={<Dashboard />} />
@@ -33,6 +35,8 @@ const App = () => {
             <Route path="/upload-documents" element={<UploadDocuments />} />
             <Route path="/module-master" element={<ViewModuleList />} />
             <Route path="/manage-users" element={<UserManagement />} />
+            <Route path="/profile" element={<ProfileIndex />} />
+            <Route path="/test" element={<Test />} />
           </Routes>
         </div>
 
