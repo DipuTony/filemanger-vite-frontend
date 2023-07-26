@@ -70,7 +70,7 @@ const UploadDocuments = () => {
     <>
       <div>Upload Documents</div>
 
-      <div className="py-20 h-screen bg-gray-300 px-2">
+      <div className="py-20 bg-gray-300 px-2">
         <div className="max-w-md mx-auto bg-white rounded-lg overflow-hidden md:max-w-lg">
           <div className="md:flex">
             <div className="w-full">

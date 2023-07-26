@@ -34,11 +34,14 @@ const Test = () => {
   };
 
   return (
+    <>
+
     <form onSubmit={handleSubmit}>
       <input type="file" onChange={handleFileChange} />
       <input type="text" value={tags} onChange={handleTagsChange} />
       <button type="submit">Upload</button>
     </form>
+    </>
   );
 };
 

@@ -9,7 +9,7 @@ const Header = (props) => {
 
     return (
         <>
-            <div className='relative flex justify-center'>
+            <div className='w-full flex justify-center'>
 
                 <div className='bg-white border shadow-lg w-full absolute rounded-md'>
                     <div className='flex justify-between mx-10 m-3'>
