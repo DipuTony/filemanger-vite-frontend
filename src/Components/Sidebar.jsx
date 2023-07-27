@@ -28,8 +28,8 @@ const Sidebar = () => {
           <nav className="-mx-3 space-y-6 ">
             <div className="space-y-3 ">
               {
-                menu.map((item) => (
-                  <NavLink to={item.path}
+                menu.map((item, index) => (
+                  <NavLink key={index} to={item.path}
                     className={({ isActive }) => isActive
                       ? 'flex transform items-center rounded-lg px-3 py-2 text-gray-800 transition-colors duration-300 bg-gray-50 hover:text-gray-700'
                       : 'flex transform items-center rounded-lg px-3 py-2 text-gray-200 transition-colors duration-300 hover:bg-gray-50 hover:text-gray-700'}>

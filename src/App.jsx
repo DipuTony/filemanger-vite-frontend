@@ -15,6 +15,8 @@ import LoginIndex from './Pages/Auth/LoginIndex'
 import EmployeeRoute from './Components/Route/EmployeeRoute'
 import Logout from './Pages/Auth/Logout'
 import ShowHeader from './Components/Route/ShowHeader'
+import AdminRoute from './Components/Route/AdminRoute'
+import AdminDashboard from './Pages/Admin/AdminDashboard'
 
 const App = () => {
 
@@ -22,26 +24,27 @@ const App = () => {
     <>
 
 
-      {/* <div className='grid grid-cols-12 bg-gray-100 '> */}
-
-        <Routes>
+      <Routes>
+        <Route element={<ShowHeader />}>
           <Route element={<EmployeeRoute />}>
-            <Route element={<ShowHeader />}>
-              <Route exact path="/" element={<Dashboard />} />
-              <Route exact path="/manage-documents" element={<ManageDocumentIndex />} />
-              <Route exact path="/upload-documents" element={<UploadDocuments />} />
-              <Route exact path="/module-master" element={<ViewModuleList />} />
-              <Route exact path="/manage-users" element={<UserManagement />} />
-              <Route exact path="/profile" element={<ProfileIndex />} />
-              <Route exact path="/test" element={<Test />} />
-            </Route>
+            <Route exact path="/" element={<Dashboard />} />
+            <Route exact path="/manage-documents" element={<ManageDocumentIndex />} />
+            <Route exact path="/upload-documents" element={<UploadDocuments />} />
+            <Route exact path="/module-master" element={<ViewModuleList />} />
+            <Route exact path="/manage-users" element={<UserManagement />} />
+            <Route exact path="/profile" element={<ProfileIndex />} />
+            <Route exact path="/test" element={<Test />} />
           </Route>
 
-          <Route exact path="/login" element={<LoginIndex />} />
-          <Route exact path="/logout" element={<Logout />} />
-        </Routes>
+          <Route element={<AdminRoute />}>
+            <Route exact path="/admin" element={<AdminDashboard />} />
+          </Route>
 
-      {/* </div> */}
+        </Route>
+
+        <Route exact path="/login" element={<LoginIndex />} />
+        <Route exact path="/logout" element={<Logout />} />
+      </Routes>
 
     </>
   )

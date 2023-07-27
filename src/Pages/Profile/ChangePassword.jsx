@@ -3,23 +3,27 @@ import React from 'react'
 import { useFormik, Formik, Form, ErrorMessage } from 'formik'
 import * as yup from 'yup'
 import { KeyRoundIcon } from 'lucide-react'
+import axios from 'axios'
+import ApiList from '../../Components/ApiLIst'
 
 const ChangePassword = (props) => {
 
+    const { apiChangePassword, header } = ApiList();
+
     const validationSchema = yup.object({
-        email: yup.string().required('Require'),
-        password: yup.string().required('Require'),
+        oldPassword: yup.string().required('Require'),
+        newPassword: yup.string().required('Require'),
     })
     const initialValues = {
-        email: '',
-        password: '',
+        oldPassword: '',
+        newPassword: '',
     }
     const formik = useFormik({
         initialValues: initialValues,
         enableReinitialize: true,
         onSubmit: (values, resetForm) => {
             console.log("Value.....", values)
-            // finalSubmitData(values)
+            handelForm(values)
         },
         validationSchema
     })
@@ -27,6 +31,27 @@ const ChangePassword = (props) => {
         let name = event.target.name
         let value = event.target.value
     };
+
+    const handelForm = (data) => {
+        const payload = {
+            "oldPassword": data.oldPassword,
+            "newPassword": data.newPassword
+        }
+
+        axios.post(apiChangePassword, payload, header)
+            .then((res) => {
+                if (res.data.status) {
+                    console.log("Password Change Successful")
+                } else {
+                    console.log("Error Password Change")
+                }
+            })
+            .catch((error) => {
+                console.log("Error Password Change", error)
+            })
+
+    }
+
     return (
         <>
             <div className="">
@@ -41,8 +66,8 @@ const ChangePassword = (props) => {
                                     <input
                                         placeholder="Old Password"
                                         className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent py-2 px-3 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
-                                        type="email" {...formik.getFieldProps('email')} />
-                                    <p className='text-red-500 text-xs'>{formik.touched.email && formik.errors.email ? formik.errors.email : null}</p>
+                                        type="password" {...formik.getFieldProps('oldPassword')} />
+                                    <p className='text-red-500 text-xs'>{formik.touched.oldPassword && formik.errors.oldPassword ? formik.errors.oldPassword : null}</p>
                                 </div>
                             </div>
                             <div>
@@ -53,8 +78,8 @@ const ChangePassword = (props) => {
                                     <input
                                         placeholder="New Password"
                                         className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent py-2 px-3 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
-                                        type="password" {...formik.getFieldProps('password')} />
-                                    <p className='text-red-500 text-xs'>{formik.touched.password && formik.errors.password ? formik.errors.password : null}</p>
+                                        type="password" {...formik.getFieldProps('newPassword')} />
+                                    <p className='text-red-500 text-xs'>{formik.touched.newPassword && formik.errors.newPassword ? formik.errors.newPassword : null}</p>
                                 </div>
                             </div>
                             <div className=''>
