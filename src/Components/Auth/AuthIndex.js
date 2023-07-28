@@ -1,9 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
+import { decryptData } from './EncryptDecrypt';
 
 const AuthIndex = () => {
 
+    const navigate = useNavigate()
+    const secretKey = 'mysecretkey';
+
     const userData = localStorage.getItem("userData")
-    const data = JSON.parse(userData)
+
+    let data;
+    if (userData) {
+        try {
+            const encryptedData = JSON.parse(userData || ''); // Provide a default empty string if userData is null
+            data = decryptData(encryptedData, secretKey)
+        } catch (error) {
+            console.log("Catch Error in encryptedData", error)
+        }
+    }
+
 
     let type = null;
     switch (data?.type) {

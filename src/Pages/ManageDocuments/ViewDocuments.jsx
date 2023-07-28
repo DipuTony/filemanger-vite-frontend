@@ -12,27 +12,15 @@ import ModalImage from "react-modal-image";
 
 
 
-const ViewDocuments = () => {
-    const [categoryData, setCategoryData] = useState(fakeCategory)
-    const [searchKey, setSearchKey] = useState()
+const ViewDocuments = (props) => {
     const [openDeleteModal, setOpenDeleteModal] = useState(false)
     const [deleted, setDeleted] = useState()
-    const [viewImageUrl, setViewImageUrl] = useState(false)
 
     const [fetchedData, setFetchedData] = useState()
 
     const { api_viewAllDocuments } = ApiList()
 
-    const fetchCategory = () => {
-        axios.get('https://646312614dca1a661353d0ee.mockapi.io/api/Category')
-            .then((res) => {
-                // console.log("category data", res.data)
-                if (res.data.length > 0) setCategoryData(res.data)// IF API is down access FakeData list
-            })
-            .catch((err) => {
-                console.log("Error while fetching category date", err)
-            })
-    }
+
     const fetchFileData = () => {
         console.log("Data fetcoing..", api_viewAllDocuments)
         axios.post(api_viewAllDocuments)
@@ -47,7 +35,6 @@ const ViewDocuments = () => {
 
 
     useEffect(() => {
-        fetchCategory()
         fetchFileData()
     }, [])
 
@@ -55,8 +42,10 @@ const ViewDocuments = () => {
         console.log("Delete clicked..", id)
         setOpenDeleteModal(false)
         setDeleted(id)
-
     }
+
+
+
     return (
         <>
 
@@ -64,10 +53,14 @@ const ViewDocuments = () => {
                 <p className='mb-10 font-bold text-gray-700'>All Items</p>
 
                 <div className='grid grid-cols-12 uppercase font-semibold text-sm text-gray-800 border-b-2'>
-                    <div className='col-span-4 flex md:gap-3 gap-1'>
-                        <input type="checkbox" name="" id="" className='accent-[#824DE8]' />File Name</div>
-                    <div className='col-span-2 md:text-base text-xs'>size</div>
-                    <div className='col-span-2 md:text-base text-xs'>Type</div>
+                    <div className='col-span-2 flex md:gap-3 gap-1'>
+                        {/* <input type="checkbox" name="" id="" className='accent-[#824DE8]' /> */}
+                        File Name
+                    </div>
+                    <div className='col-span-2 md:text-base text-xs'>Unique Id</div>
+                    <div className='col-span-2 md:text-base text-xs'>reference no</div>
+                    <div className='col-span-1 md:text-base text-xs'>size</div>
+                    <div className='col-span-1 md:text-base text-xs'>Type</div>
                     <div className='col-span-2 md:text-base text-xs'>Modified</div>
                     <div className='col-span-1 md:text-base text-xs'>Action</div>
                 </div>
@@ -75,22 +68,24 @@ const ViewDocuments = () => {
                 {
                     fetchedData?.map((item) => (
                         <div key={item.id} className='grid grid-cols-12 items-center text-sm text-gray-700 py-3 md:py-5 border-b'>
-                            <div className='col-span-4 flex items-center md:gap-3 gap-1'>
-                                <input type="checkbox" name="" id="" className='accent-[#824DE8]' />
-                                <p className='font-semibold md:text-base text-xs break-all'>{item.original_file_name}</p>
+                            <div className='col-span-2 flex items-center md:gap-3 gap-1'>
+                                {/* <input type="checkbox" name="" id="" className='accent-[#824DE8]' /> */}
+                                <p className='font-semibold md:text-sm text-xs break-all'>{item?.file_name}</p>
                             </div>
 
-                            <div className='col-span-2'>{item.size}</div>
-                            <div className='col-span-2 uppercase break-all md:text-base text-xs'>{item.type}</div>
-                            <div className='col-span-2 md:text-base text-xs'>{moment(item.created_at).format("Do MMM 'YY")}</div>
+                            <div onClick={() => props.handleUniqueId(item?.unique_id)} className='col-span-2 hover:underline hover:font-semibold text-blue-500 cursor-pointer'>{item?.unique_id}</div>
+                            <div onClick={() => props.handleReferenceNo(item?.reference_no)} className='col-span-2 hover:underline hover:font-semibold text-blue-500 cursor-pointer'>{item?.reference_no}</div>
+                            <div className='col-span-1'>{item.size}</div>
+                            <div className='col-span-1 uppercase break-all md:text-base text-xs'>{item?.file_type}</div>
+                            <div className='col-span-2 md:text-base text-xs'>{moment(item?.created_at).format("Do MMM 'YY")}</div>
                             <div className='col-span-1 flex md:gap-2 relative'>
                                 <p className=' cursor-pointer hover:bg-gray-300 rounded-md p-1'>
                                     {/* <GrView size={15} /> */}
                                     View
                                     <ModalImage
-                                        small={item.fullPath}
-                                        large={item.fullPath}
-                                        // alt={item.fullPath}
+                                        small={item?.fullPath}
+                                        large={item?.fullPath}
+                                    // alt={item.fullPath}
                                     />
                                 </p>
                                 <p className='cursor-pointer hover:bg-gray-300 rounded-md p-1'>

@@ -26,8 +26,11 @@ export default function ApiList() {
         api_myProfile: `${baseUrl}/auth/profile`, //POST
         apiRevokeAccessKey: `${baseUrl}/auth/revoke-access-key`, //POST
         apiChangePassword: `${baseUrl}/auth/change-password`, //POST
+        apiProfileUpdate: `${baseUrl}/auth/profile-update`, //POST
 
         api_viewAllDocuments: `${baseUrl}/document/view-all`, //POST
+        api_viewDocumentByReference: `${baseUrl}/document/view-by-reference`, //POST
+        api_viewDocumentByUid: `${baseUrl}/document/view-by-uid`, //POST
     }
 
     return apiList

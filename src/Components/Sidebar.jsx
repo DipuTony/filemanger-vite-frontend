@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import { LayoutDashboard, FileStack, FileUp, Database, Users, UserCog, KeyRound, Container } from 'lucide-react'
+import { LayoutDashboard, FileStack, FileUp, Database, Users, UserCog, KeyRound, Container, LogOut } from 'lucide-react'
 
 
 const Sidebar = () => {
@@ -14,6 +14,7 @@ const Sidebar = () => {
     { id: 7, name: 'test', path: '/test', icon: Users },
     { id: 8, name: 'Transaction Logs', path: '/test', icon: Users },
     { id: 9, name: 'Profile', path: '/profile', icon: UserCog },
+    { id: 10, name: 'Logout', path: '/logout', icon: LogOut },
   ]
 
   return (

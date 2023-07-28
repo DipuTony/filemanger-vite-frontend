@@ -31,7 +31,6 @@ const LoginIndex = () => {
         initialValues: initialValues,
         enableReinitialize: true,
         onSubmit: (values, resetForm) => {
-            // console.log("Value.....", values)
             handleSubmit(values)
         },
         validationSchema

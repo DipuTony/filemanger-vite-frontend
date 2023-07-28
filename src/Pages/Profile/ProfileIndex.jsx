@@ -3,6 +3,7 @@ import { CheckCircle, Copy, XCircle } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import ApiList from '../../Components/ApiLIst'
 import AuthIndex from '../../Components/Auth/AuthIndex'
+import { Notification1 } from '../../Components/NotificationComponents/Notification'
 import ChangePassword from './ChangePassword'
 import UserProfile from './UserProfile'
 
@@ -10,6 +11,7 @@ const ProfileIndex = () => {
 
     const [userProfileData, setUserProfileData] = useState()
     const { isLoggedIn, userIs } = AuthIndex();
+    const [notification, setNotification] = useState({})
 
     const { api_myProfile, header, apiRevokeAccessKey } = ApiList();
 
@@ -43,6 +45,7 @@ const ProfileIndex = () => {
                     // setUserProfileData(res.data.data)
                     fetchProfileData();
                     console.log("Regenerate Successful")
+                    setNotification({ type: "success", message: "Token Regenerate Successful" })
                 } else {
                     console.log("Error While Regenerating secrete key")
                 }
@@ -70,6 +73,7 @@ const ProfileIndex = () => {
 
     return (
         <>
+            <Notification1 type={notification.type} message={notification.message} />
             <div className='grid grid-cols-12 gap-5'>
 
                 <div className='col-span-8 border bg-white rounded-lg p-5 relative mt-5'>
