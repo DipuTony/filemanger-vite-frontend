@@ -19,7 +19,6 @@ const AuthIndex = () => {
         }
     }
 
-
     let type = null;
     switch (data?.type) {
         case 1:

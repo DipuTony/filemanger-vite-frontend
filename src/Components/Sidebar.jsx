@@ -1,20 +1,23 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { LayoutDashboard, FileStack, FileUp, Database, Users, UserCog, KeyRound, Container, LogOut } from 'lucide-react'
+import AuthIndex from './Auth/AuthIndex'
 
 
 const Sidebar = () => {
 
+  const { userIs, isLoggedIn } = AuthIndex()
+
   const menu = [
-    { id: 1, name: 'Dashboard', path: '/', icon: LayoutDashboard },
-    { id: 2, name: 'Manage Documents', path: '/manage-documents', icon: FileStack },
-    { id: 3, name: 'Upload Documents', path: '/upload-documents', icon: FileUp },
-    { id: 4, name: 'Module Master', path: '/module-master', icon: Database },
-    { id: 5, name: 'User Management', path: '/manage-users', icon: Users },
-    { id: 7, name: 'test', path: '/test', icon: Users },
-    { id: 8, name: 'Transaction Logs', path: '/test', icon: Users },
-    { id: 9, name: 'Profile', path: '/profile', icon: UserCog },
-    { id: 10, name: 'Logout', path: '/logout', icon: LogOut },
+    { id: 1, name: 'Dashboard', path: '/', icon: LayoutDashboard, access: ['user', 'admin'] },
+    { id: 2, name: 'Manage Documents', path: '/manage-documents', icon: FileStack, access: ['admin','user'] },
+    { id: 3, name: 'Upload Documents', path: '/upload-documents', icon: FileUp, access: ['user'] },
+    { id: 4, name: 'Module Master', path: '/module-master', icon: Database, access: ['user'] },
+    { id: 5, name: 'User Management', path: '/manage-users', icon: Users, access: ['admin'] },
+    { id: 7, name: 'test', path: '/test', icon: Users, access: ['admin'] },
+    { id: 8, name: 'Transaction Logs', path: '/test', icon: Users, access: ['admin', 'user'] },
+    { id: 9, name: 'Profile', path: '/profile', icon: UserCog, access: ['admin', 'user'] },
+    { id: 10, name: 'Logout', path: '/logout', icon: LogOut, access: ['admin', 'user'] },
   ]
 
   return (
@@ -30,6 +33,7 @@ const Sidebar = () => {
             <div className="space-y-3 ">
               {
                 menu.map((item, index) => (
+                  item?.access?.includes(userIs) &&
                   <NavLink key={index} to={item.path}
                     className={({ isActive }) => isActive
                       ? 'flex transform items-center rounded-lg px-3 py-2 text-gray-800 transition-colors duration-300 bg-gray-50 hover:text-gray-700'

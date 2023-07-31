@@ -17,6 +17,7 @@ import Logout from './Pages/Auth/Logout'
 import ShowHeader from './Components/Route/ShowHeader'
 import AdminRoute from './Components/Route/AdminRoute'
 import AdminDashboard from './Pages/Admin/AdminDashboard'
+import IsLoginRoute from './Components/Route/IsLoginRoute'
 
 const App = () => {
 
@@ -26,18 +27,21 @@ const App = () => {
 
       <Routes>
         <Route element={<ShowHeader />}>
+          {/* Only Employee Can access This */}
           <Route element={<EmployeeRoute />}>
             <Route exact path="/" element={<Dashboard />} />
-            <Route exact path="/manage-documents" element={<ManageDocumentIndex />} />
-            <Route exact path="/upload-documents" element={<UploadDocuments />} />
             <Route exact path="/module-master" element={<ViewModuleList />} />
             <Route exact path="/manage-users" element={<UserManagement />} />
-            <Route exact path="/profile" element={<ProfileIndex />} />
             <Route exact path="/test" element={<Test />} />
           </Route>
-
+          {/* Only Admin Can assess these routes */}
           <Route element={<AdminRoute />}>
             <Route exact path="/admin" element={<AdminDashboard />} />
+          </Route>
+          {/* Any LoggedIn user can access these routes */}
+          <Route element={<IsLoginRoute />}>
+            <Route exact path="/profile" element={<ProfileIndex />} />
+            <Route exact path="/manage-documents" element={<ManageDocumentIndex />} />
           </Route>
 
         </Route>

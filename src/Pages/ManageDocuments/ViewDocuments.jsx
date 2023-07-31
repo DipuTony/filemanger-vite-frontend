@@ -18,12 +18,12 @@ const ViewDocuments = (props) => {
 
     const [fetchedData, setFetchedData] = useState()
 
-    const { api_viewAllDocuments } = ApiList()
+    const { api_viewAllDocuments,header } = ApiList()
 
 
     const fetchFileData = () => {
         console.log("Data fetcoing..", api_viewAllDocuments)
-        axios.post(api_viewAllDocuments)
+        axios.post(api_viewAllDocuments, {}, header)
             .then((res) => {
                 console.log("file data", res.data.data)
                 if (res.data.data.length > 0) setFetchedData(res.data.data) // IF API is down access FakeData list
@@ -53,10 +53,7 @@ const ViewDocuments = (props) => {
                 <p className='mb-10 font-bold text-gray-700'>All Items</p>
 
                 <div className='grid grid-cols-12 uppercase font-semibold text-sm text-gray-800 border-b-2'>
-                    <div className='col-span-2 flex md:gap-3 gap-1'>
-                        {/* <input type="checkbox" name="" id="" className='accent-[#824DE8]' /> */}
-                        File Name
-                    </div>
+                    <div className='col-span-3 flex md:gap-3 gap-1'>File Name</div>
                     <div className='col-span-2 md:text-base text-xs'>Unique Id</div>
                     <div className='col-span-2 md:text-base text-xs'>reference no</div>
                     <div className='col-span-1 md:text-base text-xs'>size</div>
@@ -68,8 +65,7 @@ const ViewDocuments = (props) => {
                 {
                     fetchedData?.map((item) => (
                         <div key={item.id} className='grid grid-cols-12 items-center text-sm text-gray-700 py-3 md:py-5 border-b'>
-                            <div className='col-span-2 flex items-center md:gap-3 gap-1'>
-                                {/* <input type="checkbox" name="" id="" className='accent-[#824DE8]' /> */}
+                            <div className='col-span-3 flex items-center md:gap-3 gap-1'>
                                 <p className='font-semibold md:text-sm text-xs break-all'>{item?.file_name}</p>
                             </div>
 
@@ -79,18 +75,7 @@ const ViewDocuments = (props) => {
                             <div className='col-span-1 uppercase break-all md:text-base text-xs'>{item?.file_type}</div>
                             <div className='col-span-2 md:text-base text-xs'>{moment(item?.created_at).format("Do MMM 'YY")}</div>
                             <div className='col-span-1 flex md:gap-2 relative'>
-                                <p className=' cursor-pointer hover:bg-gray-300 rounded-md p-1'>
-                                    {/* <GrView size={15} /> */}
-                                    View
-                                    <ModalImage
-                                        small={item?.fullPath}
-                                        large={item?.fullPath}
-                                    // alt={item.fullPath}
-                                    />
-                                </p>
-                                <p className='cursor-pointer hover:bg-gray-300 rounded-md p-1'>
-                                    <TbEdit size={15} />
-                                </p>
+                                <p className='cursor-pointer hover:bg-gray-300 rounded-md p-1'><TbEdit size={15} /></p>
 
                                 {openDeleteModal == item.id &&
                                     <div className='absolute shadow-inner w-40  right-5 -top-12'>

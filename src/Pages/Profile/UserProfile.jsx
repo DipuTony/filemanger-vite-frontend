@@ -77,8 +77,6 @@ const UserProfile = (props) => {
             })
     }
 
-    console.log("notification==>",notification)
-
 
     return (
         <>
