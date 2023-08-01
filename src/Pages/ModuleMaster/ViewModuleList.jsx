@@ -4,15 +4,16 @@ import ApiList from '../../Components/ApiLIst';
 import ListTableRedesign from '../../Components/DataTable/ListTableRedesign'
 import { nullToNA } from '../../Components/PowerupFunctions';
 import AddModuleMaster from './AddModuleMaster';
+import TestModal from './TestModal';
 
 const ViewModuleList = () => {
     const [fetchedData, setFetchedData] = useState()
     const [addModuleModal, setAddModuleModal] = useState(false)
 
-    const { api_viewConsumerList } = ApiList();
+    const { api_viewConsumerList, header } = ApiList();
 
     const fetchConsumerList = () => {
-        axios.post(api_viewConsumerList)
+        axios.post(api_viewConsumerList, {}, header)
             .then((res) => {
                 console.log("file data", res.data.data)
                 if (res.data.data.length > 0) setFetchedData(res.data.data) // IF API is down access FakeData list
@@ -29,8 +30,10 @@ const ViewModuleList = () => {
 
     const COLUMNS = [
         { Header: "Sl. No.", accessor: "id", },
-        { Header: "Module Name", accessor: "module_name", },
-        { Header: "Token", accessor: "token", },
+        { Header: "Module Name", accessor: "first_name", },
+        { Header: "Role", accessor: "role", },
+        { Header: "Email", accessor: "email", },
+        { Header: "Secret Key", accessor: "secret_key", },
         {
             Header: "Status",
             accessor: "status",
@@ -52,10 +55,14 @@ const ViewModuleList = () => {
 
     return (
         <>
-            {addModuleModal && <AddModuleMaster closeModal={setAddModuleModal} />}
-            <div>
+        <TestModal />
 
-                <button onClick={()=>setAddModuleModal(!addModuleModal)} className='bg-[#557eee] text-white rounded px-3 md:px-5 py-2 font-semibold flex text-sm md:text-base'> Add Module</button>
+
+            {addModuleModal && <AddModuleMaster closeModal={setAddModuleModal} />}
+
+            <div className='z-0'>
+
+                <button onClick={() => setAddModuleModal(!addModuleModal)} className='bg-[#557eee] text-white rounded px-3 md:px-5 py-2 font-semibold flex text-sm md:text-base'> Add Module</button>
 
 
                 {fetchedData ? <ListTableRedesign columns={COLUMNS} dataList={fetchedData} /> : "No date"}

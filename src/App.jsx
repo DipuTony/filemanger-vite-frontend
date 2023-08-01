@@ -1,14 +1,9 @@
 import React from 'react'
-import Header from './Components/Header'
-import Sidebar from './Components/Sidebar'
-import reactLogo from './assets/react.svg'
 import { useState } from 'react'
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import Dashboard from './Pages/Dashboard'
-import UserManagement from './Pages/UserManagement'
 import UploadDocuments from './Pages/UploadDocuments'
 import ViewModuleList from './Pages/ModuleMaster/ViewModuleList'
-import Test from './Pages/TEST/Test'
 import ProfileIndex from './Pages/Profile/ProfileIndex'
 import ManageDocumentIndex from './Pages/ManageDocuments/ManageDocumentIndex'
 import LoginIndex from './Pages/Auth/LoginIndex'
@@ -30,13 +25,13 @@ const App = () => {
           {/* Only Employee Can access This */}
           <Route element={<EmployeeRoute />}>
             <Route exact path="/" element={<Dashboard />} />
-            <Route exact path="/module-master" element={<ViewModuleList />} />
-            <Route exact path="/manage-users" element={<UserManagement />} />
-            <Route exact path="/test" element={<Test />} />
+            <Route exact path="/upload-documents" element={<UploadDocuments />} />
+
           </Route>
           {/* Only Admin Can assess these routes */}
           <Route element={<AdminRoute />}>
             <Route exact path="/admin" element={<AdminDashboard />} />
+            <Route exact path="/manage-users" element={<ViewModuleList />} />
           </Route>
           {/* Any LoggedIn user can access these routes */}
           <Route element={<IsLoginRoute />}>

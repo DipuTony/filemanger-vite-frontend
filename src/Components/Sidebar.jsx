@@ -9,15 +9,14 @@ const Sidebar = () => {
   const { userIs, isLoggedIn } = AuthIndex()
 
   const menu = [
-    { id: 1, name: 'Dashboard', path: '/', icon: LayoutDashboard, access: ['user', 'admin'] },
-    { id: 2, name: 'Manage Documents', path: '/manage-documents', icon: FileStack, access: ['admin','user'] },
-    { id: 3, name: 'Upload Documents', path: '/upload-documents', icon: FileUp, access: ['user'] },
-    { id: 4, name: 'Module Master', path: '/module-master', icon: Database, access: ['user'] },
+    { id: 1, name: 'Dashboard', path: '/', icon: LayoutDashboard, access: ['user'] },
+    { id: 2, name: 'Dashboard', path: '/admin', icon: LayoutDashboard, access: ['admin'] },
+    { id: 3, name: 'Manage Documents', path: '/manage-documents', icon: FileStack, access: ['admin','user'] },
+    { id: 4, name: 'Upload Documents', path: '/upload-documents', icon: FileUp, access: ['user'] },
     { id: 5, name: 'User Management', path: '/manage-users', icon: Users, access: ['admin'] },
-    { id: 7, name: 'test', path: '/test', icon: Users, access: ['admin'] },
-    { id: 8, name: 'Transaction Logs', path: '/test', icon: Users, access: ['admin', 'user'] },
-    { id: 9, name: 'Profile', path: '/profile', icon: UserCog, access: ['admin', 'user'] },
-    { id: 10, name: 'Logout', path: '/logout', icon: LogOut, access: ['admin', 'user'] },
+    { id: 6, name: 'Transaction Logs', path: '/test', icon: Users, access: ['admin', 'user'] },
+    { id: 7, name: 'Profile', path: '/profile', icon: UserCog, access: ['admin', 'user'] },
+    { id: 8, name: 'Logout', path: '/logout', icon: LogOut, access: ['admin', 'user'] },
   ]
 
   return (

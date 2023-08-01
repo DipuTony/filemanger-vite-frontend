@@ -13,8 +13,10 @@ const customStyles = {
         bottom: 'auto',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
+        zIndex: 9999, // Set a higher value for z-index
     },
 };
+
 
 
 // Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
@@ -60,7 +62,7 @@ function AddModuleMaster(props) {
     }
 
     return (
-        <div>
+        <div className='z-50'>
 
             <Modal
                 isOpen={modalIsOpen}

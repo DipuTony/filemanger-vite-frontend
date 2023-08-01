@@ -13,12 +13,11 @@ export default function ApiList() {
         }
     }
 
-    // window.sessionStorage.setItem("name", "Raja Ram Mohan Malvia")
 
     let apiList = {
         header: header,
         api_uploadDocument: `${baseUrl}/document/upload`, //POST
-        api_viewConsumerList: `${baseUrl}/admin/consumer/view-all`, //POST
+        api_viewConsumerList: `${baseUrl}/users/view-all`, //POST
         api_addConsumer: `${baseUrl}/admin/consumer/add`, //POST
 
         // -- Employee -- 
