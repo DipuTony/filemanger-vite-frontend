@@ -13,12 +13,13 @@ import ShowHeader from './Components/Route/ShowHeader'
 import AdminRoute from './Components/Route/AdminRoute'
 import AdminDashboard from './Pages/Admin/AdminDashboard'
 import IsLoginRoute from './Components/Route/IsLoginRoute'
+import toast, { Toaster } from 'react-hot-toast';
 
 const App = () => {
 
   return (
     <>
-
+      <Toaster />
 
       <Routes>
         <Route element={<ShowHeader />}>

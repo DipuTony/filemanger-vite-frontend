@@ -6,6 +6,8 @@ import AuthIndex from '../../Components/Auth/AuthIndex'
 import { Notification1 } from '../../Components/NotificationComponents/Notification'
 import ChangePassword from './ChangePassword'
 import UserProfile from './UserProfile'
+import copy from 'copy-to-clipboard';
+import toast from 'react-hot-toast';
 
 const ProfileIndex = () => {
 
@@ -45,6 +47,7 @@ const ProfileIndex = () => {
                     // setUserProfileData(res.data.data)
                     fetchProfileData();
                     console.log("Regenerate Successful")
+                    toast.success("Token Regenerate Successful")
                     setNotification({ type: "success", message: "Token Regenerate Successful" })
                 } else {
                     console.log("Error While Regenerating secrete key")
@@ -70,6 +73,11 @@ const ProfileIndex = () => {
     // Combine date and time into the final format
     const formattedDateTime = `${formattedDate}, ${formattedTime}`;
 
+    //Using this function copy the text in clipboard
+    const copyToClipboard = (text) => {
+        copy(text);
+        toast.success("Copy to Clipboard")
+    }
 
     return (
         <>
@@ -88,7 +96,7 @@ const ProfileIndex = () => {
                             <div className='w-full'>
                                 <p className='font-semibold'>Your Token</p>
                                 <p className='flex justify-between items-center w-full border border-gray-700 py-1 rounded shadow px-2 bg-gray-200 text-gray-700 font-semibold'>{userProfileData?.secret_key}
-                                    <Copy size={15} className="cursor-pointer" />
+                                    <Copy onClick={() => copyToClipboard(userProfileData?.secret_key)} size={15} className="cursor-pointer" />
                                 </p>
                             </div>
                             <div>

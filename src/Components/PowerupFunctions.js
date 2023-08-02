@@ -1,4 +1,4 @@
-import { toast } from "react-toastify"
+import toast from 'react-hot-toast';
 
 //function to get current date
 export const getCurrentDate = () => {
@@ -299,7 +299,7 @@ export const checkSizeValidation = (file) => {
             if(fileSize <= 1){
                 return true;
             } else {
-                toast.info('Image must be less than 1Mb')
+                toast.error('Image must be less than 1Mb')
                 return false;
             }
         }
@@ -307,7 +307,7 @@ export const checkSizeValidation = (file) => {
             if(fileSize <= 1){
                 return true;
             } else {
-                toast.info('Image must be less than 1Mb')
+                toast.error('Image must be less than 1Mb')
                 return false;
             }
         }
@@ -315,7 +315,7 @@ export const checkSizeValidation = (file) => {
             if(fileSize <= 1){
                 return true;
             } else {
-                toast.info('Image must be less than 1Mb')
+                toast.error('Image must be less than 1Mb')
                 return false;
             }
         }
@@ -323,12 +323,12 @@ export const checkSizeValidation = (file) => {
             if(fileSize <= 10){
                 return true;
             } else {
-                toast.info('PDF must be less than 10Mb')
+                toast.error('PDF must be less than 10Mb')
                 return false;
             }
         }
         default : {
-            toast.info('File type must be "jpg", "jpeg", "png" or "pdf"')
+            toast.error('File type must be "jpg", "jpeg", "png" or "pdf"')
             return false;
         }
     }

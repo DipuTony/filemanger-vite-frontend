@@ -5,6 +5,7 @@ import ListTableRedesign from '../../Components/DataTable/ListTableRedesign'
 import { nullToNA } from '../../Components/PowerupFunctions';
 import AddModuleMaster from './AddModuleMaster';
 import TestModal from './TestModal';
+import toast from 'react-hot-toast';
 
 const ViewModuleList = () => {
     const [fetchedData, setFetchedData] = useState()
@@ -13,13 +14,21 @@ const ViewModuleList = () => {
     const { api_viewConsumerList, header } = ApiList();
 
     const fetchConsumerList = () => {
+        const toastId = toast.loading("Loading...")
         axios.post(api_viewConsumerList, {}, header)
             .then((res) => {
-                console.log("file data", res.data.data)
-                if (res.data.data.length > 0) setFetchedData(res.data.data) // IF API is down access FakeData list
+                if (res.data.status) {
+                    console.log("file data", res.data.data)
+                    if (res.data.data.length > 0) setFetchedData(res.data.data) // IF API is down access FakeData list
+                    toast.dismiss(toastId)
+                } else {
+                    toast.error(red.data.message)
+                }
             })
             .catch((err) => {
+                toast.error(red.data.message)
                 console.log("Error while fetching file date", err)
+                toast.dismiss(toastId)
             })
     }
 
@@ -55,7 +64,7 @@ const ViewModuleList = () => {
 
     return (
         <>
-        <TestModal />
+            <TestModal />
 
 
             {addModuleModal && <AddModuleMaster closeModal={setAddModuleModal} />}

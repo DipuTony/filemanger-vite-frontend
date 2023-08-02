@@ -5,6 +5,7 @@ import * as yup from 'yup'
 import { KeyRoundIcon } from 'lucide-react'
 import axios from 'axios'
 import ApiList from '../../Components/ApiLIst'
+import toast from 'react-hot-toast';
 
 const ChangePassword = (props) => {
 
@@ -42,7 +43,9 @@ const ChangePassword = (props) => {
             .then((res) => {
                 if (res.data.status) {
                     console.log("Password Change Successful")
+                    toast.success("Password Change Successful")
                 } else {
+                    toast.error(res.data.message)
                     console.log("Error Password Change")
                 }
             })

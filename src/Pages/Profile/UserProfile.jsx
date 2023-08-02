@@ -6,6 +6,8 @@ import { KeyRoundIcon } from 'lucide-react'
 import ApiList from '../../Components/ApiLIst'
 import axios from 'axios'
 import { Notification1 } from '../../Components/NotificationComponents/Notification'
+import toast from 'react-hot-toast';
+
 
 const UserProfile = (props) => {
     // const [userProfileData, setUserProfileData] = useState()
@@ -67,12 +69,15 @@ const UserProfile = (props) => {
             .then((res) => {
                 if (res.data.status) {
                     console.log("Profile Update Success")
+                    toast.success("Profile Update Success")
                     setNotification({ type: "success", message: "Profile Update" })
                 } else {
+                    toast.error(res.data.message)
                     console.log("Error While Profile Update")
                 }
             })
             .catch((error) => {
+                toast.error("Error: Profile couldn't Update")
                 console.log("Error while Profile Update", error)
             })
     }
